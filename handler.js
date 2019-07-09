@@ -13,7 +13,7 @@ module.exports.hello = (event, context, callback) => {
 
   const params = {
     Message: `A new file: ${fileName}has been uploaded to the bucket: ${bucket} `,
-    TopicArn: "arn:aws:sns:us-east-1:389480544174:s3uploadTopic"
+    TopicArn: "arn:aws:sns:us-east-1:${process.env.accountId}:s3uploadTopic"
   }
   //console.log("params", params)
   SNS.publish(params, function (err, data) {
@@ -39,7 +39,7 @@ module.exports.bye = (event, context, callback) => {
 
   const params = {
     Message: `A file named : ${fileName} has been deleted from the bucket: ${bucket} `,
-    TopicArn: "arn:aws:sns:us-east-1:389480544174:s3uploadTopic"
+    TopicArn: "arn:aws:sns:us-east-1:${process.env.accountId}:s3uploadTopic"
   }
   //console.log("params", params)
   SNS.publish(params, function (err, data) {
